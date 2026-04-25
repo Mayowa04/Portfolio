@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayowa Adegboyegun — Software Engineer & Web Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0A66C2;
+    --blue-light: #E8F1FB;
+    --blue-mid: #378ADD;
+    --dark: #0D1117;
+    --dark2: #161B22;
+    --dark3: #21262D;
+    --text: #E6EDF3;
+    --text-muted: #8B949E;
+    --text-dim: #484F58;
+    --accent: #58A6FF;
+    --accent2: #1F6FEB;
+    --green: #3FB950;
+    --border: rgba(240,246,252,0.1);
+    --border2: rgba(240,246,252,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--dark);
+    background: var(--accent);
+    border: none;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #79c0ff; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 2px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.6rem;
+    background: var(--accent);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #79c0ff; transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.6rem;
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .avatar-wrapper {
+    position: relative;
+    width: 300px; height: 300px;
+  }
+  .avatar-ring {
+    position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(88,166,255,0.3);
+    animation: spin 20s linear infinite;
+  }
+  .avatar-ring::after {
+    content: '';
+    position: absolute;
+    top: -4px; left: 50%;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-circle {
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--accent);
+    overflow: hidden;
+    position: relative;
+  }
+  .avatar-circle::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(88,166,255,0.08), transparent);
+  }
+  .status-badge {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+    color: var(--green);
+  }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* STAT CHIPS */
+  .hero-stats {
+    display: flex; gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .stat-chip {
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+  .stat-divider {
+    width: 1px; height: 32px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 0.6rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    max-width: 520px;
+  }
+
+  /* ABOUT */
+  #about { background: var(--dark2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .about-card {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .about-card:hover { border-color: rgba(88,166,255,0.35); }
+  .about-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(88,166,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .about-card h4 { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .about-card p { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; }
+
+  /* SKILLS */
+  #skills { background: var(--dark); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(88,166,255,0.4); transform: translateY(-3px); }
+  .skill-card-head {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .skill-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.15rem;
+    background: rgba(88,166,255,0.08);
+  }
+  .skill-card-head h3 { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--dark2); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px; bottom: 10px;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem; top: 10px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--dark2);
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.2);
+  }
+  .timeline-header {
+    display: flex; flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .timeline-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    padding: 3px 10px;
+    background: var(--dark3);
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .timeline-company {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+  }
+  .timeline-points { list-style: none; }
+  .timeline-points li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    padding: 4px 0;
+    padding-left: 1.1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .timeline-points li::before {
+    content: '›';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--dark); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(88,166,255,0.35); }
+  .project-banner {
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.2);
+  }
+  .project-body { padding: 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .project-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .project-body p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.65; flex: 1; }
+  .project-footer {
+    padding: 0 1.5rem 1.25rem;
+    display: flex; flex-wrap: wrap; gap: 7px;
+  }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--dark2); }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .cert-card {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1.1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(88,166,255,0.35); }
+  .cert-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+  .cert-card h4 { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .cert-card p { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; }
+
+  /* EDUCATION */
+  #education { background: var(--dark); }
+  .edu-card {
+    background: var(--dark2);
+    border: 1px solid rgba(88,166,255,0.25);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 600px;
+    display: flex; gap: 1.5rem; align-items: flex-start;
+  }
+  .edu-icon {
+    width: 56px; height: 56px; flex-shrink: 0;
+    background: rgba(88,166,255,0.1);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .edu-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .edu-card .school { font-size: 0.88rem; color: var(--accent); margin-bottom: 8px; font-weight: 400; }
+  .edu-card .detail { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; }
+  .grad-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 10px;
+    background: rgba(63,185,80,0.12);
+    border: 1px solid rgba(63,185,80,0.3);
+    border-radius: 50px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* LEADERSHIP */
+  #leadership { background: var(--dark2); }
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .leadership-card {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .leadership-card:hover { border-color: rgba(88,166,255,0.35); }
+  .lc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 0.6rem; }
+  .lc-icon { font-size: 1.2rem; }
+  .lc-head h4 { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+  .leadership-card p { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+  .lc-role {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--dark); }
+  .contact-wrap {
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .contact-links {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 0.8rem 1.6rem;
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-link svg { width: 16px; height: 16px; opacity: 0.7; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  footer span { color: var(--accent); }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    nav .nav-links { display: none; }
+    .hero h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Mayowa<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:adegboyegunmayowa@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid" style="max-width:1100px;margin:0 auto;width:100%;">
+    <div>
+      <div class="hero-eyebrow">Software Engineer</div>
+      <h1>Building Digital<br>Experiences<br>That <em>Matter</em></h1>
+      <p class="hero-desc">
+        500-level Software Engineering student at FUTA with hands-on experience in Frontend Development, Full-Stack Web Development, UI/UX Design, and Microsoft Power Platform.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 3l14 9-14 9V3z"/></svg>
+          View Projects
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get In Touch
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-chip">
+          <span class="stat-num">2+</span>
+          <span class="stat-label">Years<br>Building</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-chip">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Tech<br>Roles</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-chip">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Projects<br>Delivered</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring"></div>
+        <div class="avatar-circle">MA</div>
+        <div class="status-badge">
+          <span class="status-dot"></span> Open to Work
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Who I Am</h2>
+      <p class="section-sub">A dedicated developer with a passion for creating user-centric digital products.</p>
+    </div>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I'm <strong>Mayowa Adegboyegun</strong>, a dedicated Software Engineering student at the Federal University of Technology Akure (FUTA), currently in my final year (500 level), with an expected graduation in October 2026.</p>
+        <p>I have practical experience across <strong>frontend web development</strong>, <strong>full-stack website development</strong>, and the <strong>Microsoft Power Platform</strong>. I thrive in building responsive, scalable websites and automating business workflows.</p>
+        <p>Beyond coding, I actively contribute to the tech community — organising hackathons, mentoring junior students, and participating in campus tech initiatives to grow the next generation of developers.</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="about-icon">🎓</div>
+          <div>
+            <h4>Currently Studying</h4>
+            <p>B.Tech Software Engineering · FUTA · Final Year</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Ketu-Ikosi, Lagos, Nigeria</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">💼</div>
+          <div>
+            <h4>Currently Working At</h4>
+            <p>Interstellar Business Solutions Limited · Tech Intern</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🌐</div>
+          <div>
+            <h4>Languages</h4>
+            <p>English (Fluent)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Technical Skills</div>
+      <h2 class="section-title">What I Work With</h2>
+      <p class="section-sub">A diverse toolkit spanning design, development, and automation.</p>
+    </div>
+    <div class="skills-grid fade-in">
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">🖥️</div>
+          <h3>Frontend Development</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">jQuery</span>
+          <span class="tag">Responsive Design</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">🏗️</div>
+          <h3>Website Builders & CMS</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">WordPress</span>
+          <span class="tag">Wix</span>
+          <span class="tag">Framer</span>
+          <span class="tag">Shopify</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">⚡</div>
+          <h3>Low-Code & Automation</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Power Apps</span>
+          <span class="tag">Power Automate</span>
+          <span class="tag">Power BI</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Wireframing</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">User Flow</span>
+          <span class="tag">SEO</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">🛠️</div>
+          <h3>Tools & DevOps</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Agile</span>
+          <span class="tag">Waterfall</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">🤝</div>
+          <h3>Soft Skills</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Communication</span>
+          <span class="tag">Problem-Solving</span>
+          <span class="tag">Team Collaboration</span>
+          <span class="tag">Adaptability</span>
+          <span class="tag">Time Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Work Experience</div>
+      <h2 class="section-title">My Journey</h2>
+      <p class="section-sub">Hands-on roles that shaped my engineering mindset.</p>
+    </div>
+    <div class="timeline fade-in">
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">WordPress Developer</span>
+          <span class="timeline-date">Apr 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Interstellar Business Solutions Limited · Lagos</div>
+        <ul class="timeline-points">
+          <li>Ensured all webpages are SEO-friendly by adding meta tags, titles, and descriptions.</li>
+          <li>Integrated third-party services such as Google Analytics into WordPress websites.</li>
+          <li>Utilized HTML5 and CSS3 coding techniques to develop custom themes and plugins.</li>
+          <li>Performed regular maintenance including troubleshooting errors and updating content.</li>
+          <li>Implemented security measures to protect websites from malicious attacks.</li>
+          <li>Optimized database queries using MySQL for improved website speed and performance.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">UI/UX Designer</span>
+          <span class="timeline-date">Apr 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Interstellar Business Solutions Limited · Lagos</div>
+        <ul class="timeline-points">
+          <li>Designed wireframes and prototypes using tools such as Figma and Adobe Creative Suite.</li>
+          <li>Collaborated with developers to ensure optimal functionality of all UI and UX designs.</li>
+          <li>Created clickable prototypes that allowed stakeholders to test potential solutions.</li>
+          <li>Updated existing designs based on changes in technology trends or customer feedback.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">Power Platform Developer</span>
+          <span class="timeline-date">Apr 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Interstellar Business Solutions Limited · Lagos</div>
+        <ul class="timeline-points">
+          <li>Designed automated workflows and digital tools using Power Apps and Power Automate.</li>
+          <li>Developed applications in line with business requirements using Agile or Waterfall methodologies.</li>
+          <li>Collaborated with cross-functional teams to ensure timely delivery of projects.</li>
+          <li>Optimized database queries for improved performance in production environment.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">Frontend Website Developer (Intern)</span>
+          <span class="timeline-date">Remote</span>
+        </div>
+        <div class="timeline-company">Future Academy Africa</div>
+        <ul class="timeline-points">
+          <li>Built responsive user interfaces and implemented website features using HTML, CSS, and JavaScript.</li>
+          <li>Contributed to frontend page development, styling, UI refactoring, and performance improvements.</li>
+          <li>Participated in remote technical collaboration, weekly challenges, and real-world development tasks.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">Things I've Built</h2>
+      <p class="section-sub">A selection of work delivered across freelance, internship, and personal projects.</p>
+    </div>
+    <div class="projects-grid fade-in">
+
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(135deg, #0f2942 0%, #1a3f66 100%);">
+          <span style="position:relative;z-index:1;">🛒</span>
+        </div>
+        <div class="project-body">
+          <h3>E-Commerce Website</h3>
+          <p>Designed and developed a fully responsive e-commerce website using Shopify and custom frontend development, optimized for mobile-first browsing and conversions.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Shopify</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(135deg, #0d2b1f 0%, #1a4d35 100%);">
+          <span style="position:relative;z-index:1;">🏢</span>
+        </div>
+        <div class="project-body">
+          <h3>Business Brand Websites</h3>
+          <p>Delivered multiple complete responsive websites for businesses using WordPress, Wix, and Framer — handling redesigns, UI improvements, and brand-specific layouts.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">WordPress</span>
+          <span class="tag">Wix</span>
+          <span class="tag">Framer</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(135deg, #1f0d2b 0%, #3a1a4d 100%);">
+          <span style="position:relative;z-index:1;">⚡</span>
+        </div>
+        <div class="project-body">
+          <h3>Power Platform Automation</h3>
+          <p>Built automated business workflows and functional applications using Microsoft Power Apps and Power Automate, reducing manual processes for clients at Interstellar.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Power Apps</span>
+          <span class="tag">Power Automate</span>
+          <span class="tag">Power BI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(135deg, #2b1a0d 0%, #4d3118 100%);">
+          <span style="position:relative;z-index:1;">📱</span>
+        </div>
+        <div class="project-body">
+          <h3>Mobile Application UI</h3>
+          <p>Built and designed a functional application, contributing to UI structure, user flow, and interactive components using Figma prototypes and frontend implementation.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Figma</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(135deg, #0d1f2b 0%, #1a3a4d 100%);">
+          <span style="position:relative;z-index:1;">🎓</span>
+        </div>
+        <div class="project-body">
+          <h3>Campus Dev Workshops</h3>
+          <p>Organised and ran coding workshops and hackathons as part of GDSC, and volunteered to teach HTML/CSS to junior students as part of Code Club weekend sessions.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">Teaching</span>
+          <span class="tag">GDSC</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(135deg, #0d2b1a 0%, #1a4d30 100%);">
+          <span style="position:relative;z-index:1;">🌍</span>
+        </div>
+        <div class="project-body">
+          <h3>Tech Conference — NFCS FUTA</h3>
+          <p>As ICT Officer, organised a campus tech conference and guided young students into the digital world, introducing them to core technology concepts in 2024.</p>
+        </div>
+        <div class="project-footer">
+          <span class="tag">Event Planning</span>
+          <span class="tag">Leadership</span>
+          <span class="tag">Digital Literacy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Certifications</div>
+      <h2 class="section-title">Credentials</h2>
+      <p class="section-sub">Continuous learning as a core value.</p>
+    </div>
+    <div class="cert-grid fade-in">
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(88,166,255,0.1);">🎓</div>
+        <div>
+          <h4>The Complete Full-Stack Web Development Bootcamp</h4>
+          <p>Udemy · 2025</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(63,185,80,0.1);">✅</div>
+        <div>
+          <h4>Responsive Web Design</h4>
+          <p>freeCodeCamp · 2024</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,166,88,0.1);">🤝</div>
+        <div>
+          <h4>Jobberman Soft-Skills Training</h4>
+          <p>Jobberman · Professional Development</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Education</div>
+      <h2 class="section-title">Academic Background</h2>
+      <p class="section-sub">Building a strong foundation at one of Nigeria's leading technology universities.</p>
+    </div>
+    <div class="edu-card fade-in">
+      <div class="edu-icon">🏛️</div>
+      <div>
+        <h3>B.Tech in Software Engineering</h3>
+        <div class="school">Federal University of Technology Akure (FUTA)</div>
+        <div class="detail">Ondo State, Nigeria · 500 Level (Final Year)</div>
+        <div class="grad-badge">
+          <span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;"></span>
+          Expected Graduation: October 2026
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Leadership & Community</div>
+      <h2 class="section-title">Beyond the Code</h2>
+      <p class="section-sub">Contributing to the tech ecosystem on campus and beyond.</p>
+    </div>
+    <div class="leadership-grid fade-in">
+      <div class="leadership-card">
+        <div class="lc-head">
+          <span class="lc-icon">🔵</span>
+          <h4>Google Developer Student Club</h4>
+        </div>
+        <p>Organised coding workshops and hackathons to promote tech awareness and hands-on learning on campus.</p>
+        <span class="lc-role">Member · GDSC FUTA</span>
+      </div>
+      <div class="leadership-card">
+        <div class="lc-head">
+          <span class="lc-icon">💻</span>
+          <h4>NFCS FUTA — ICT Officer</h4>
+        </div>
+        <p>Organised a tech conference and guided young students into the digital world, promoting digital literacy in 2024.</p>
+        <span class="lc-role">ICT Officer · 2024</span>
+      </div>
+      <div class="leadership-card">
+        <div class="lc-head">
+          <span class="lc-icon">📚</span>
+          <h4>Code Club — Tutor</h4>
+        </div>
+        <p>Volunteered to teach HTML and CSS to junior students during weekend sessions, fostering the next generation of developers.</p>
+        <span class="lc-role">Volunteer Tutor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap fade-in">
+      <div class="section-label" style="justify-content:center;">Contact</div>
+      <h2 class="section-title" style="text-align:center;">Let's Work Together</h2>
+      <p class="section-sub" style="margin:0 auto 0;text-align:center;">
+        Open to internship opportunities, freelance projects, and collaborations. Feel free to reach out anytime.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:adegboyegunmayowa@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          adegboyegunmayowa@gmail.com
+        </a>
+        <a href="tel:+2349063207486" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+          +234 906 320 7486
+        </a>
+        <a href="https://github.com/Mayowa04" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          github.com/Mayowa04
+        </a>
+        <a href="https://linkedin.com/in/mayowa-adegboyegun" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Mayowa Adegboyegun</span> · Built with passion in Lagos, Nigeria 🇳🇬</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
